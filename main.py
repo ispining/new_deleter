@@ -12,7 +12,10 @@ config.loop_bots_threads()
 
 while True:
     try:
-        os.system('cls')
+        try:
+            os.system('cls')
+        except:
+            os.system('clear')
         sessions = len(unpick("data"))
         print(f"[+] Sessions: {str(sessions)}")
         time.sleep(3)
