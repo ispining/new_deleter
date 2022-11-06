@@ -17,7 +17,7 @@ threading.main_thread()
 while True:
     try:
         os.system('cls')
-        sessions = len(pickle('data').unpick())
+        sessions = len(unpick("data"))
         print(f"[+] Sessions: {str(sessions)}")
         time.sleep(3)
     except KeyboardInterrupt:
