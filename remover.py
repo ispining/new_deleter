@@ -1,9 +1,28 @@
-import re
+import re, pickle
 import threading
 
-import iluxaMod as ilm
-import telebot.apihelper
 
+import telebot.apihelper
+import telebot
+
+
+
+def pick(filename, data):
+    file = open(filename, 'wb')
+
+    # dump information to that file
+    pickle.dump(data, file)
+
+    # close the file
+    file.close()
+
+
+def unpick(filename):
+    with open('important', 'rb') as file:
+
+        # dump information to that file
+        return pickle.load(file)
+    
 
 # ilm.tools.pickle('data').pick(['5057064705:AAFgeeBBlTIjyEynVyo9fn_UAKBsrX3KtIE'])
 
@@ -27,7 +46,7 @@ def del_all_start(bot, message):
 
 
 def starter(t):
-    bot = ilm.tgBot(t).bot
+    bot = telebot.TeleBot(t)
     bot.parse_mode = 'HTML'
 
 
@@ -80,10 +99,10 @@ def starter(t):
         if r != None:
             token = r.group(0)
 
-            unp = ilm.tools.pickle('data').unpick()
+            unp = unpick('data')
             if token not in unp:
                 unp.append(token)
-                ilm.tools.pickle('data').pick(unp)
+                pick('data', unp)
                 th = threading.Thread(target=starter, args=(token, ))
                 th.daemon = True
                 th.start()
@@ -125,9 +144,9 @@ def starter(t):
 
             except:
                 pass
-            unp = ilm.tools.pickle('data').unpick()
+            unp = unpick('data')
             unp.remove(t)
-            ilm.tools.pickle('data').pick(unp)
+            pick('data', unp)
             break
 
         except Exception as ex:
@@ -139,7 +158,7 @@ def starter(t):
 
                     except:
                         pass
-                    unp = ilm.tools.pickle('data').unpick()
+                    unp = unpick('data')
                     unp.remove(t)
-                    ilm.tools.pickle('data').pick(unp)
+                    pick('data', unp)
                     break
