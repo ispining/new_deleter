@@ -17,7 +17,7 @@ def pick(filename, data):
 
 
 def unpick(filename):
-    with open(filename', 'rb') as file:
+    with open(filename, 'rb') as file:
 
         # dump information to that file
         return pickle.load(file)
@@ -30,7 +30,7 @@ class bots:
         return unpick("data")
 
     def add(self):
-        unp = pickle('data').unpick()
+        unp = unpick("data")
         unp.append(self.token)
         pick("data", unp)
 
