@@ -18,7 +18,7 @@ def pick(filename, data):
 
 
 def unpick(filename):
-    with open('important', 'rb') as file:
+    with open(filename, 'rb') as file:
 
         # dump information to that file
         return pickle.load(file)
