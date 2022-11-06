@@ -4,6 +4,7 @@ import time
 import config
 from config import bot
 import pickle
+from config import pick, unpick
 
 
 
