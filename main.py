@@ -2,7 +2,8 @@ import os
 import threading
 import time
 import config
-from config import bot, pickle
+from config import bot
+import pickle
 
 
 
