@@ -1,30 +1,43 @@
 
-import iluxaMod as ilm
+import telebot
 
 import remover
 
-main_tg_bot = ilm.tgBot('')
-bot = main_tg_bot.bot
+bot = telebot.TeleBot("")
 bot.parse_mode = 'HTML'
 
-pickle = ilm.tools.pickle
+def pick(filename, data):
+    file = open(filename, 'wb')
+
+    # dump information to that file
+    pickle.dump(data, file)
+
+    # close the file
+    file.close()
+
+
+def unpick(filename):
+    with open(filename', 'rb') as file:
+
+        # dump information to that file
+        return pickle.load(file)
 
 class bots:
     def __init__(self, token=None):
         self.token = token
 
     def list_all(self):
-        return pickle('data').unpick()
+        return unpick("data")
 
     def add(self):
         unp = pickle('data').unpick()
         unp.append(self.token)
-        pickle('data').pick(unp)
+        pick("data", unp)
 
     def remove(self):
-        unp = pickle('data').unpick()
+        unp = unpick("data")
         unp.remove(self.token)
-        pickle('data').pick(unp)
+        pick("data", unp)
 
 
 
